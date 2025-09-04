@@ -1,12 +1,11 @@
 document.addEventListener("click", function (e) {
-  const button = e.target.closest("*");
+  const button = e.target.closest("button");
 
   if (button && button.textContent.toLowerCase().includes("add")) {
 
     const img = document.createElement("img");
     img.src = chrome.runtime.getURL("icon.png");
 
-    // Style the image to appear like a popup
     img.style.position = "fixed";
     img.style.bottom = "20px";
     img.style.right = "20px";
@@ -20,4 +19,10 @@ document.addEventListener("click", function (e) {
 
     document.body.appendChild(img);
 
+    setTimeout(() => {
+      img.style.opacity = "0";
+      setTimeout(() => img.remove(), 300);
+    }, 2000);
+
+  }
 });
