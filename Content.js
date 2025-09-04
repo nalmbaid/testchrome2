@@ -1,15 +1,18 @@
-let bobRossImages = [
-  "https://bit.ly/3Ck6DTU",
-  "https://bit.ly/3ozQCVk",
-  "https://bit.ly/3omYDN6",
-  "https://bit.ly/3osrfoi",
-  "https://bit.ly/3qCPjax",
-  "https://bit.ly/3CkRXE6",
-];
 
-const imgs = document.getElementsByTagName("img");
+document.addEventListener("click", function (e) {
+  const button = e.target.closest("*");
 
-for (image of imgs) {
-  const index = Math.floor(Math.random() * bobRossImages.length);
-  image.src = bobRossImages[index];
-}
+  if (button && button.textContent.toLowerCase().includes("add")) {
+
+    const img = document.createElement("img");
+    img.src = chrome.runtime.getURL("icon.png"); // Load from extension folder
+    img.style.position = "fixed";
+    img.style.bottom = "20px";
+    img.style.right = "20px";
+    img.style.width = "120px";
+    img.style.zIndex = "9999";
+
+    document.body.appendChild(img);
+
+  }
+});
