@@ -3,12 +3,21 @@ document.addEventListener("click", function (e) {
 
   if (button && button.textContent.toLowerCase().includes("add")) {
 
-    chrome.notifications.create({
-      type: "basic",
-      iconUrl: chrome.runtime.getURL("icon.png"),
-      title: "Added!",
-      message: "Item was added successfully."
-    });
+    const img = document.createElement("img");
+    img.src = chrome.runtime.getURL("icon.png");
 
-  }
+    // Style the image to appear like a popup
+    img.style.position = "fixed";
+    img.style.bottom = "20px";
+    img.style.right = "20px";
+    img.style.width = "50px";
+    img.style.height = "50px";
+    img.style.zIndex = "9999";
+    img.style.borderRadius = "8px";
+    img.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
+    img.style.transition = "opacity 0.3s ease";
+    img.style.opacity = "1";
+
+    document.body.appendChild(img);
+
 });
