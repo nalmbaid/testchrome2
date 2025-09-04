@@ -1,7 +1,18 @@
+console.log("Content script loaded");
+
 document.addEventListener("click", function (e) {
+  console.log("Clicked element:", e.target);
+
   const button = e.target.closest("button");
+  console.log("Closest button:", button);
+
+  if (button) {
+    const text = button.textContent.toLowerCase();
+    console.log("Button text:", text);
+  }
 
   if (button && button.textContent.toLowerCase().includes("add")) {
+    console.log("Add detected! Showing popup");
 
     const img = document.createElement("img");
     img.src = chrome.runtime.getURL("icon.png");
@@ -23,6 +34,5 @@ document.addEventListener("click", function (e) {
       img.style.opacity = "0";
       setTimeout(() => img.remove(), 300);
     }, 2000);
-
   }
 });
